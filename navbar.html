@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex Navbar</title>
+  <!-- Material Design Font. For Toggle Icon -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* general */
+    html {
+      font-size: 16px;
+      height: 100%;
+    }
+
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 3rem;
+    }
+
+    .img-button {
+      background-color: #fff;
+      border-radius: 10px;
+    }
+
+    .nav-toggle>span {
+      font-size: 3rem;
+    }
+
+
+    /* navbar */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background-color: #343A40;
+      color: #fff;
+
+    }
+
+    .nav-items {
+      background-color: #000;
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      position: fixed;
+      width: 50%;
+      left: 100%;
+      top: 0;
+      transition: all 0.5s ease-out;
+      border-left: 1px solid #444;
+      border-bottom: 1px solid #444;
+      z-index: 2;
+    }
+
+    .nav-items a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.4rem;
+      padding: 20px;
+    }
+
+    .nav-toggle-container {
+      margin-left: auto;
+      display: block;
+    }
+
+    #overlay {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.2;
+      z-index: 1;
+      display: none;
+    }
+
+    .nav-items .nav-toggle {
+      align-self: flex-end;
+    }
+
+    @media(min-width: 768px) {
+      .nav-items {
+        position: static;
+        width: 80%;
+        flex-direction: row;
+        background: none;
+      }
+
+      .nav-toggle-container {
+        display: none;
+      }
+
+      .nav-items .nav-toggle {
+        display: none;
+      }
+
+      .nav-items a {
+        margin-left: 20px;
+        padding: 0;
+      }
+
+      .nav-items a:last-child {
+        margin-right: 20px;
+      }
+    }
+
+    .move-left {
+      left: 50%;
+    }
+
+    .dblock {
+      display: block !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- overlay div, displays when menu is visible on small screen -->
+  <div id="overlay"></div>
+  <!-- nav -->
+  <nav>
+    <div class="nav-logo">
+      <span class="material-icons logo">widgets</span>
+    </div>
+    <div class="nav-items">
+      <a class="nav-toggle" aria-role="button" aria-lable="Close Menu"><span class="material-icons">close</span></a>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Pricing</a>
+      <a href="#">Reviews</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="nav-toggle-container">
+      <a class="nav-toggle" aria-role="button" aria-label="Menu"><span class="material-icons">menu</span></a>
+    </div>
+  </nav>
+  <!-- content -->
+  <content>
+    <h1>Hello World</h1>
+    <h2>Lorem Ipsum me sum content.</h2>
+  </content>
+
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
+    </script>
+
+  <!-- toggle script -->
+  <script>
+
+    // toggle menu functions, slides the menu into view and displays the overlay to prevent interaction.
+    function toggleMenu() {
+      $('.nav-items').toggleClass('move-left');
+      $('#overlay').toggleClass('dblock');
+    }
+
+    // attach the click handlers to both nav buttons and the overlay
+    $(document).ready(function () {
+      $('.nav-toggle').click(toggleMenu);
+      $('#overlay').click(toggleMenu); // when menu is visible, if you click anywhere on the screen, the menu closes.
+    });
+
+    // on window resize (desktops), slide the menu away if it is visible
+    $(window).resize(function () {
+      $('.nav-items').removeClass('move-left');
+      $('#overlay').removeClass('dblock');
+    });
+  </script>
+
+
+</body>
+
+</html>
