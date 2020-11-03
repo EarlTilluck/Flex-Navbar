@@ -1,7 +1,7 @@
 # Flex-Navbar
 A lightweight and responsive navbar using Jquery and CSS flexbox. This was made because sometimes I would like to implement a navbar without any extra Bootstrap weight. From this starter, I can modify the navigation to create any unique design I need.
 
-# See it in action
+## See it in action
 https://earltilluck.github.io/Flex-Navbar/
 
 ## Usage.
